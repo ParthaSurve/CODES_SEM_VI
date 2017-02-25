@@ -1,0 +1,43 @@
+clc;
+clear;
+clf;
+//initializing the parameters
+L = 1  //length of the domain
+t_max = 1 //end time
+n_x = 8 // No of nodes
+n_t = 50 // time steps
+dx = L/(n_x-1); //spacial step size
+dt = t_max/(n_t-1);//temporal step size
+alpha = 1; //diffusion term
+t=0.01
+//n=50
+
+//U=zeros(n)
+//T_ana=zeros(n_x)
+
+//Analytical Solution//
+//the 'n' value can be varied to increase the accuracy 
+for i = 0:n_x-1
+   T_ana(i+1)=0
+    for n = 1:1:50
+    U(n)= (40*(1-(-1)^n)/(n*%pi))*sin(n*%pi*i*dx/L)*%e^(-alpha*t*(n*%pi/L)^2)
+    //u_ana=u_ana+U(n)
+    //T_ana(i+1)=u_ana
+    T_ana(i+1)=T_ana(i+1)+U(n)
+    end    
+end
+//Plotting the funciton value at a particular time step for all the nodes
+ 
+j=[1:1:n_x]
+ 
+       plot(j,T_ana(j),"r");
+     
+title('1-D Heat Eqn using Explicit Method', "fontsize", 5);
+xlabel("Nodes", "fontsize", 5);
+ylabel("Time Step","fontsize", 5);
+
+
+
+
+
+
